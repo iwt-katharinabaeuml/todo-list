@@ -1,15 +1,14 @@
-import { render } from '@testing-library/react';
-
+import { render, screen } from '@testing-library/react';
+import DatePicker from './DatePicker';
 import App from './app';
+import '@testing-library/jest-dom';
+
+jest.mock('./Datepicker');
 
 describe('App', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<App />);
-    expect(baseElement).toBeTruthy();
-  });
-
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(<App />);
-    expect(getByText(/Welcome app/gi)).toBeTruthy();
+    expect(screen.getByText('MY TO DOs')).toBeInTheDocument();
+    expect(DatePicker).toHaveBeenCalled();
   });
 });
