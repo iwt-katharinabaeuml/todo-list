@@ -35,11 +35,11 @@ function DoneList(props: DoneListProps) {
                   />
                   <label
                     htmlFor="default-checkbox"
-                    className="relative whitespace-pre flex w-11/12 pr-2"
+                    className=" relative  flex w-11/12 pr-2"
                   >
                     <div
                       id={'item-priority-done-' + index}
-                      className="truncate text-black text-center border rounded border-solid border-gray-100 bg-gray-50 mx-5 w-8"
+                      className="mx-5 w-8 h-7 text-p-1 text-black whitespace-pre text-center border rounded border-solid border-gray-100 bg-gray-50 "
                     >
                       {todo.priority.toString()}
                     </div>
