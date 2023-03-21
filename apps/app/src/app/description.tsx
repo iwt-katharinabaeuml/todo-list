@@ -1,19 +1,19 @@
-import styles from './app.module.scss';
+import React from 'react';
+import './app.module.scss';
 
-interface InputfieldProps {
+interface DescriptionProps {
   sendValue: (value: string) => void;
 }
 
-function Inputfield(props: InputfieldProps) {
+function Description(props: DescriptionProps) {
   const onKeyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {   
     props.sendValue((event.target as HTMLInputElement).value);
   }
 
   return (
-    <input
-    data-testid="inputfield"
+    <input    
       type="text"
-      id="inputfield"
+      id="description"
       className="h-full bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-5/12 ml-5 p-3"
       placeholder="new To Do"
       required
@@ -22,4 +22,4 @@ function Inputfield(props: InputfieldProps) {
   );
 }
 
-export default Inputfield;
+export default Description;

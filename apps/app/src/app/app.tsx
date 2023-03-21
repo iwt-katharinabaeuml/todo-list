@@ -1,8 +1,8 @@
 import './app.module.scss';
-import { useState, useReducer, useEffect, useRef } from 'react';
+import React, { useState, useReducer, useRef } from 'react';
 
 import ButtonAdd from './buttonAdd';
-import Inputfield from './inputfield';
+import Description from './description';
 import { Todo } from './models/todo.interface';
 import ToDoList from './toDoList';
 import DoneList from './doneList';
@@ -86,7 +86,7 @@ function App() {
             </h1>
             <div className="flex-auto">
               <div className="flex md:container mx-auto h-12 order-last">
-                <Inputfield
+                <Description
                   data-testid="inputfield"
                   sendValue={sendInputValue}
                 />

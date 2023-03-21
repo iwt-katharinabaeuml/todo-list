@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ClockIcon } from '@heroicons/react/24/outline';
-import styles from './app.module.scss';
+import './app.module.scss';
 
 interface DropDownPriorityProps {
   sendValue: (type: string, priority: string) => void;
@@ -51,7 +51,7 @@ const DropDownPriority = (props: DropDownPriorityProps) => {
 
   return (
     <div className="w-1/6 dropdown z-50">
-      <div className="from-green-400 via-green-600 to-green-700 from-yellow-400 via-yellow-600 to-yellow-700 from-gray-400 via-gray-600 to-gray-700 w-0 h-0"></div>
+      <div className="from-green-400 via-green-600 to-green-700 from-red-400 via-red-600 to-red-700 from-yellow-400 via-yellow-600 to-yellow-700 from-gray-400 via-gray-600 to-gray-700 w-0 h-0"></div>
       <button id="handleOpen" onClick={handleOpen}  className={state.color}>
         {state.innerHTML}
       </button>
