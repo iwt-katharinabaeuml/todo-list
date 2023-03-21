@@ -4,14 +4,15 @@ import './app.module.scss';
 
 interface DoneListProps {
   todos: Array<Todo>;
-  turnOnActive: (index: number) => void;
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  forceUpdate: () => void;
 }
 
 function DoneList(props: DoneListProps) {
-  const [data, setData] = useState(props.todos);
-
   const onCheckboxUpdate = (index: number) => {
-    props.turnOnActive(index);
+    props.todos[index].active = true;
+    props.setTodos(props.todos);
+    props.forceUpdate();
   };
 
   return (
@@ -21,7 +22,7 @@ function DoneList(props: DoneListProps) {
         className="list-none bg-gray-300 divide-y
           rounded-lg m-5"
       >
-        {data.map((todo, index) => {
+        {props.todos.map((todo, index) => {
           if (Boolean(todo.active) == false) {
             return (
               <li key={'item-' + index} className="relative kat-list-item-cell">

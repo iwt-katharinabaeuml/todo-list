@@ -1,19 +1,28 @@
 import { Todo } from './models/todo.interface';
 import { useState } from 'react';
+import { TrashIcon } from '@heroicons/react/24/outline';
 // import './app.module.scss';
 
 interface TodoListProps {
-  todos: Array<Todo>;
-  turnOffActive: (index: number) => void;
+  todos: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  forceUpdate: () => void;
 }
 
 function ToDoList(props: TodoListProps) {
-  const [data, setData] = useState(props.todos);
+  const onClickTrash = (event: EventTarget & SVGSVGElement) => {
+    const index = parseInt(event.getAttribute('data-id')!);
+    const todos = [...props.todos];
+    const removedElement = todos.splice(index, 1);
+    props.setTodos(todos);
+    props.forceUpdate();
+  };
 
   const onCheckboxUpdate = (index: number) => {
-    props.turnOffActive(index);
-    console.log('turnOffAktive', index);
-    console.log(data, 'toDo-List rendered');
+    props.todos[index].active = false;
+    props.setTodos(props.todos);
+    console.log('turnOffActive', index, props.todos);
+    props.forceUpdate();
   };
 
   return (
@@ -23,7 +32,7 @@ function ToDoList(props: TodoListProps) {
         className="list-none bg-yellow-400 divide-y
           rounded-lg m-5 z-index: -1"
       >
-        {data.map((todo, index) => {
+        {props.todos.map((todo, index) => {
           if (Boolean(todo.active) == true) {
             return (
               <li
@@ -36,7 +45,7 @@ function ToDoList(props: TodoListProps) {
                     onChange={() => onCheckboxUpdate(index)}
                     id={'default-checkbox-' + index}
                     type="checkbox"
-                    className="todo-checkbox m-1"
+                    className="todo-checkbox m-1 cursor-pointer"
                   />
                   <label
                     id={'label-' + index}
@@ -55,13 +64,22 @@ function ToDoList(props: TodoListProps) {
                       className="{'item-description-'+index} item-description text-center absolute truncate w-10/12 mr-5"
                     >
                       {todo.description}
-                    </p>
+                    </p>{' '}
+                    <div
+                      id={'item-date-' + index}
+                      className="absolute item-date text-center right-10 border rounded border-solid w-24  border-gray-700 hover:border-white invisible md:visible"
+                    >
+                      {todo.date.toString()}
+                    </div>
                   </label>
-                  <div
-                    id={'item-date-' + index}
-                    className="item-date text-center absolute right-10 border rounded border-solid w-24  border-gray-700 hover:border-white invisible md:visible"
-                  >
-                    {todo.date.toString()}
+                </div>{' '}
+                <div className="absolute right-10 bottom-6">
+                  <div>
+                    <TrashIcon
+                      data-id={index}
+                      className=" h-6 w-6 z-10 cursor-pointer "
+                      onClick={(e) => onClickTrash(e.currentTarget)}
+                    />
                   </div>
                 </div>
               </li>
