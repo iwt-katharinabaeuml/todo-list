@@ -65,9 +65,17 @@ describe('app', () => {
     cy.get('#donelist').find('li').should('have.length', 0);
   });
 
-  it('should remove a todo',() =>{
+  it('should remove a todo', () => {
     cy.get('#todo-list').find('li').should('have.length', 1);
-    cy.get('#todo-list').find('li:first').find('#trashIcon').click()
+    cy.get('#todo-list').find('li:first').find('#trashIcon').click();
     cy.get('#todo-list').find('li').should('have.length', 0);
-  })
+  });
+
+  it('should remove a completed todo', () => {
+    cy.get('#todo-list').find('li:first').find('[type="checkbox"]').click();
+    cy.get('#todo-list').find('li').should('have.length', 0);
+    cy.get('#donelist').find('li').should('have.length', 1);
+    cy.get('#donelist').find('li:first').find('#trashIcon').click();
+    cy.get('#donelist').find('li').should('have.length', 0);
+  });
 });
