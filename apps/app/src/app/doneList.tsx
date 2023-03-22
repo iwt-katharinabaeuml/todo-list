@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Todo } from './models/todo.interface';
 import './app.module.scss';
 import { DateTimeFormatOptions } from './models/dateTimeFormatOptions.interface';
+import { TrashIcon } from '@heroicons/react/24/outline';
 
 interface DoneListProps {
   todos: Array<Todo>;
@@ -17,6 +18,15 @@ function DoneList(props: DoneListProps) {
     props.forceUpdate();
   };
 
+  const onClickTrash = (event: EventTarget & SVGSVGElement) => {
+    const index = parseInt(event.getAttribute('data-id')!);
+    const todos = [...props.todos];
+    const removedElement = todos.splice(index, 1);
+    props.setTodos(todos);
+    props.forceUpdate();
+  };
+
+
   return (
     <div>
       <ul
@@ -25,7 +35,7 @@ function DoneList(props: DoneListProps) {
           rounded-lg m-5"
       >
         {props.todos.map((todo, index) => {
-          if (Boolean(todo.active) == false) {
+          if (Boolean(todo.active) === false) {
             return (
               <li key={'item-' + index} className="relative kat-list-item-cell">
                 <div className="flex items-center">
@@ -52,15 +62,25 @@ function DoneList(props: DoneListProps) {
                     >
                       {todo.description}
                     </p>
-                  </label>
-                  <div
-                    id={'item-date-done-' + index}
-                    className="absolute right-10 border text-center rounded border-solid w-24 border-gray-700 hover:border-white invisible md:visible"
-                  >
-                    {new Intl.DateTimeFormat(
+                    <div
+                      id={'item-date-done-' + index}
+                      className="absolute right-10 border text-center rounded border-solid w-24 border-gray-700 hover:border-white invisible md:visible"
+                    >
+                      {new Intl.DateTimeFormat(
                         props.dateTimeFormatOptions.locale,
                         props.dateTimeFormatOptions.options
                       ).format(new Date(todo.date))}
+                    </div>
+                  </label>
+                  </div>{' '}
+                <div className="absolute right-10 bottom-6">
+                  <div>
+                    <TrashIcon
+                      data-id={index}
+                      id="trashIcon"
+                      className=" h-6 w-6 z-10 cursor-pointer "
+                      onClick={(e) => onClickTrash(e.currentTarget)}
+                    />
                   </div>
                 </div>
               </li>

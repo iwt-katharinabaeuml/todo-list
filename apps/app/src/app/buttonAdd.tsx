@@ -16,7 +16,7 @@ function ButtonAdd(props: ButtonAddProps) {
         onClick={buttonClick}
         type="button"
         className="  w-full h-12 text-l text-white
-         bg-gradient-to-r from-purple-400 via-purple-600 to-purple-700 hover:bg-gradient-to-br shadow-lg font-medium rounded-lg hover:text-center focus:ring-gray-500 focus:border-gray-500"
+         bg-gradient-to-r from-purple-400 via-purple-600 to-purple-700 hover:bg-gradient-to-br shadow-lg font-medium rounded-lg hover:text-center "
       >
         ADD
       </button>
