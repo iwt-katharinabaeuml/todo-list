@@ -8,6 +8,8 @@ import ToDoList from './toDoList';
 import DoneList from './doneList';
 import DropDownPriority from './dropDownPriority';
 import Datepicker from './datePicker';
+import { DateTimeFormatOptions } from './models/dateTimeFormatOptions.interface';
+import { Locales } from './models/locales.enum';
 
 function App() {
   const [todos, setTodos] = useState(new Array<Todo>());
@@ -15,12 +17,20 @@ function App() {
 
   const ref = useRef('');
 
+  const dateTimeFormatOptions: DateTimeFormatOptions = {
+    locale: Locales.de,
+    options: {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    }
+  };
+
   const setPriority = (reference: string) => {
     ref.current = reference;
   };
 
   const addToDo = () => {
-    console.log('newTodo', newTodo);
     setNewTodo({
       ...newTodo,
       active: true,
@@ -29,10 +39,9 @@ function App() {
     forceUpdate();
   };
 
-  const newTodoDate = new Intl.DateTimeFormat('en-US').format(new Date());
   const [newTodo, setNewTodo] = useState({
     description: '',
-    date: newTodoDate,
+    date: new Date().toString(),
     priority: '',
     active: true,
   });
@@ -90,12 +99,12 @@ function App() {
             <p className="border-t-4 border-gray-600 p-2 rounded mx-5"></p>
           </div>
           <div>
-            <ToDoList todos={todos} setTodos={setTodos} forceUpdate={forceUpdate} />
+            <ToDoList todos={todos} dateTimeFormatOptions={dateTimeFormatOptions} setTodos={setTodos} forceUpdate={forceUpdate} />
           </div>
           <h1 className="text-left text-gray-700 py-3 ml-8">Done</h1>
           <p className="border-t-4 border-gray-600 p-2 rounded mx-5"></p>
           <div>
-            <DoneList todos={todos} setTodos={setTodos} forceUpdate={forceUpdate} />
+            <DoneList todos={todos} dateTimeFormatOptions={dateTimeFormatOptions} setTodos={setTodos} forceUpdate={forceUpdate} />
           </div>
         </div>
       </div>

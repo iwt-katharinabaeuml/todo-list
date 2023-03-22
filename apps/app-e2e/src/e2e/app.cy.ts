@@ -25,7 +25,7 @@ describe('app', () => {
       .should('contain', '!!!');
     cy.get('#todo-list')
       .get('li#item-0 .item-date:first')
-      .should('contain', '2023-03-21');
+      .should('contain', '21.03.2023');
     cy.get('#todo-list')
       .get('li#item-1 .item-description:first')
       .should('contain', 'Nikolausmuetze aufsetzen');
@@ -34,7 +34,7 @@ describe('app', () => {
       .should('contain', '!');
     cy.get('#todo-list')
       .get('li#item-1 .item-date:first')
-      .should('contain', '2023-12-06');
+      .should('contain', '06.12.2023');
     cy.get('#todo-list').find('li').should('have.length', 2);
   });
 
@@ -48,7 +48,7 @@ describe('app', () => {
       .should('contain', '!!!');
     cy.get('#todo-list')
       .get('li:first .item-date:first')
-      .should('contain', '2023-03-21');
+      .should('contain', '21.03.2023');
     cy.get('#donelist').find('li').should('have.length', 0);
     cy.get('#todo-list').find('li:first').find('[type="checkbox"]').click();
     cy.get('#donelist').find('li:first').should('contain', 'Osterbrot backen');
@@ -64,4 +64,10 @@ describe('app', () => {
     cy.get('#todo-list').find('li').should('have.length', 1);
     cy.get('#donelist').find('li').should('have.length', 0);
   });
+
+  it('should remove a todo',() =>{
+    cy.get('#todo-list').find('li').should('have.length', 1);
+    cy.get('#todo-list').find('li:first').find('#trashIcon').click()
+    cy.get('#todo-list').find('li').should('have.length', 0);
+  })
 });

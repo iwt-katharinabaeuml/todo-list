@@ -1,10 +1,13 @@
 import { Todo } from './models/todo.interface';
 import { useState } from 'react';
 import { TrashIcon } from '@heroicons/react/24/outline';
+import { Locales } from './models/locales.enum';
+import { DateTimeFormatOptions } from './models/dateTimeFormatOptions.interface';
 // import './app.module.scss';
 
 interface TodoListProps {
   todos: Todo[];
+  dateTimeFormatOptions: DateTimeFormatOptions;
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   forceUpdate: () => void;
 }
@@ -69,7 +72,10 @@ function ToDoList(props: TodoListProps) {
                       id={'item-date-' + index}
                       className="absolute item-date text-center right-10 border rounded border-solid w-24  border-gray-700 hover:border-white invisible md:visible"
                     >
-                      {todo.date.toString()}
+                      {new Intl.DateTimeFormat(
+                        props.dateTimeFormatOptions.locale,
+                        props.dateTimeFormatOptions.options
+                      ).format(new Date(todo.date))}
                     </div>
                   </label>
                 </div>{' '}
@@ -77,6 +83,7 @@ function ToDoList(props: TodoListProps) {
                   <div>
                     <TrashIcon
                       data-id={index}
+                      id="trashIcon"
                       className=" h-6 w-6 z-10 cursor-pointer "
                       onClick={(e) => onClickTrash(e.currentTarget)}
                     />

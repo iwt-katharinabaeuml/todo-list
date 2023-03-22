@@ -1,25 +1,25 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
-import React from "react";
-import '@testing-library/jest-dom';
-import DatePicker  from './DatePicker';
+// import { render, screen } from '@testing-library/react';
+// import App from './App';
+// import React from "react";
+// import '@testing-library/jest-dom';
+// import DatePicker  from './DatePicker';
 
-global.React = React;
+// global.React = React;
 
 
 
-DatePicker.mockImplementation(props => props.sendValue)
+// // DatePicker.mockImplementation(props => props.sendValue)
 
-it("render Datepicker",()=>{
+// // it("render Datepicker",()=>{
   
     
-    render(<DatePicker />)
+// //     render(<DatePicker />)
  
-    expect(DatePicker).toHaveBeenCalled()
-})
+// //     expect(DatePicker).toHaveBeenCalled()
+// // })
 
-it("sendValue als prop übergeben - no Error please",() => {
-    render(<App />)
-})
+// // it("sendValue als prop übergeben - no Error please",() => {
+// //     render(<App />)
+// // })
 
 

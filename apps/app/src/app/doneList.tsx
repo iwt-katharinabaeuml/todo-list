@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Todo } from './models/todo.interface';
 import './app.module.scss';
+import { DateTimeFormatOptions } from './models/dateTimeFormatOptions.interface';
 
 interface DoneListProps {
   todos: Array<Todo>;
+  dateTimeFormatOptions: DateTimeFormatOptions;
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   forceUpdate: () => void;
 }
@@ -44,7 +46,6 @@ function DoneList(props: DoneListProps) {
                     >
                       {todo.priority.toString()}
                     </div>
-
                     <p
                       id={'item-description-done-' + index}
                       className="absolute text-center truncate w-10/12 mr-5"
@@ -52,12 +53,14 @@ function DoneList(props: DoneListProps) {
                       {todo.description}
                     </p>
                   </label>
-
                   <div
                     id={'item-date-done-' + index}
                     className="absolute right-10 border text-center rounded border-solid w-24 border-gray-700 hover:border-white invisible md:visible"
                   >
-                    {todo.date.toString()}
+                    {new Intl.DateTimeFormat(
+                        props.dateTimeFormatOptions.locale,
+                        props.dateTimeFormatOptions.options
+                      ).format(new Date(todo.date))}
                   </div>
                 </div>
               </li>
