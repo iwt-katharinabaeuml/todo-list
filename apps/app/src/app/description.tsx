@@ -12,7 +12,7 @@ function Description(props: DescriptionProps) {
   const onKeyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     props.sendValue('description', (event.target as HTMLInputElement).value);
     if ((event.target as HTMLInputElement).value == '') {
-      ref.current?.classList.add('empty');    
+      ref.current?.classList.add('empty');
     } else {
       ref.current?.classList.remove('empty');
     }
@@ -26,7 +26,7 @@ function Description(props: DescriptionProps) {
       ref={ref}
       type="text"
       id="description"
-      className='h-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-gray-500 block w-5/12 ml-5 p-3'
+      className="h-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-gray-500 block w-5/12 ml-5 p-3"
       placeholder="new To Do"
       required
       onKeyUp={(event) => onKeyUpHandler(event)}

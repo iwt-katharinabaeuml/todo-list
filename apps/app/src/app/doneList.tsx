@@ -26,7 +26,6 @@ function DoneList(props: DoneListProps) {
     props.forceUpdate();
   };
 
-
   return (
     <div>
       <ul
@@ -72,7 +71,7 @@ function DoneList(props: DoneListProps) {
                       ).format(new Date(todo.date))}
                     </div>
                   </label>
-                  </div>{' '}
+                </div>{' '}
                 <div className="absolute right-10 bottom-6">
                   <div>
                     <TrashIcon

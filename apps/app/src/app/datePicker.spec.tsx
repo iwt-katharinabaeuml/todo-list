@@ -6,20 +6,15 @@
 
 // global.React = React;
 
-
-
 // // DatePicker.mockImplementation(props => props.sendValue)
 
 // // it("render Datepicker",()=>{
-  
-    
+
 // //     render(<DatePicker />)
- 
+
 // //     expect(DatePicker).toHaveBeenCalled()
 // // })
 
 // // it("sendValue als prop übergeben - no Error please",() => {
 // //     render(<App />)
 // // })
-
-

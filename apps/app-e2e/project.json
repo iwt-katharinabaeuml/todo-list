@@ -11,17 +11,15 @@
         "devServerTarget": "app:serve:development",
         "testingType": "e2e",
         "headed": true,
-        "exit":false,
-        "watch":true
-
+        "exit": false,
+        "watch": true
       },
       "configurations": {
         "production": {
           "devServerTarget": "app:serve:production",
           "headed": false,
-          "exit":true,
-          "watch":false
-  
+          "exit": true,
+          "watch": false
         }
       }
     },
