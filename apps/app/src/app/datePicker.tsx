@@ -2,7 +2,7 @@ import './datePicker.scss';
 import React, { useEffect, useRef, useState } from 'react';
 
 interface DatePickerProps {
-  sendValue: (date: string) => void;
+  sendValue: (key: string, value: string) => void;
 }
 
 function DatePicker(props: DatePickerProps) {
@@ -16,7 +16,7 @@ function DatePicker(props: DatePickerProps) {
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    props.sendValue(value);
+    props.sendValue('date', value);
     ref.current?.setAttribute('value', value.toString());
     console.log(value?.toString());
   }, [value]);
@@ -24,7 +24,7 @@ function DatePicker(props: DatePickerProps) {
   return (
     <input
       id="datepicker"
-      className="mx-2 rounded-lg cursor-pointer bg-gray-50 border-gray-300 "
+      className="mx-2 rounded-lg cursor-pointer bg-gray-50 border-gray-300"
       placeholder="date"
       ref={ref}
       type="date"

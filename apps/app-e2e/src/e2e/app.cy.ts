@@ -79,3 +79,5 @@ describe('app', () => {
     cy.get('#donelist').find('li').should('have.length', 0);
   });
 });
+
+//maxLength description testen

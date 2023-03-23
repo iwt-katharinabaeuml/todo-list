@@ -3,8 +3,7 @@ import { ClockIcon } from '@heroicons/react/24/outline';
 import './app.module.scss';
 
 interface DropDownPriorityProps {
-  sendValue: (type: string, priority: string) => void;
-  setPriority: ( priority: string) => void;
+  sendValue: (key: string, value: string) => void;
 }
 
 interface DropDownPriorityState {
@@ -25,7 +24,6 @@ const DropDownPriority = (props: DropDownPriorityProps) => {
 
   useEffect(() => {
     props.sendValue("priority", state.priority);
-    props.setPriority(state.priority)
   }, [state]);
 
   const handleOpen = () => {
