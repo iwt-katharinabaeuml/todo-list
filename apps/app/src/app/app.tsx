@@ -45,7 +45,10 @@ function App() {
   };
 
   const clearDescription = () => {
-    inputDescriptionRef!.current!.value = '';
+    if (inputDescriptionRef && inputDescriptionRef.current) {
+      inputDescriptionRef.current.value = '';
+    }
+
     setNewTodo({
       ...newTodo,
       description: '',
@@ -53,7 +56,9 @@ function App() {
   };
 
   const addToDo = () => {
-    if (newTodo.description !== '') {
+    if (newTodo.description === '') {
+      inputDescriptionRef?.current?.classList.add('empty');
+    } else {
       setNewTodo({
         ...newTodo,
         active: true,

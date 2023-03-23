@@ -26,7 +26,7 @@ function Description(props: DescriptionProps) {
       ref={ref}
       type="text"
       id="description"
-      className='h-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-gray-500 block w-5/12 ml-5 p-3 empty'
+      className='h-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-gray-500 block w-5/12 ml-5 p-3'
       placeholder="new To Do"
       required
       onKeyUp={(event) => onKeyUpHandler(event)}
